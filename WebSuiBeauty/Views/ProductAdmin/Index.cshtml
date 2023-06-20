@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebSuiBeauty.Data.Product>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Index</title>
+    <style>
+        .custom-table {
+            border: 1px solid #000;
+        }
+
+        .custom-row {
+            background-color: pink;
+            border: 1px solid #000;
+        }
+
+        .custom-button {
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="btn btn-primary custom-button" style="margin-bottom:10px" href="@Url.Action("Create", "ProductAdmin")">Thêm</a>
+    <table class="table custom-table table-bordered">
+        <tr class="text-center custom-row">
+            <th>Danh mục</th>
+            <th>Tên sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Giá tiền</th>
+            <th>Giảm giá (%)</th>
+            <th>Bảo hành (năm)</th>
+            <th>Mô tả</th>
+            <th>Số lượng</th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>Thao tác</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="col-1">
+                    @Html.DisplayFor(modelItem => item.ProductCategory.Name)
+                </td>
+                <td class="col-1">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="@Url.Content(item.Image)" alt="Hình ảnh" />
+                    }
+                </td>
+                <td class="col-1 text-center">
+                    @item.Price.ToString("N0")đ
+                </td>
+                <td class="col-1 text-center">
+                    @Math.Floor(item.PromotionPrice??0)
+                </td>
+                <td class="col-1 text-center">
+                    @Html.DisplayFor(modelItem => item.Warranty)
+                </td>
+                <td class="col-2">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td class="col-1 text-center">
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td class="col-1 ">
+                    @((item.CreatedDate ?? DateTime.Now).ToString("dd/MM/yyyy"))
+                </td>
+                <td class="col-1 text-center" style="color:@(item.Status ? "forestgreen" : "red"); font-weight:bold">
+                    @(item.Status?"Còn hàng":"Hết hàng")
+                </td>
+                <td class="col-1 text-center">
+                    <a class="btn btn-warning custom-button" style="margin-bottom: 10px" href="@Url.Action("Edit", "ProductAdmin", new { id = item.Id })">Sửa</a>
+                    <a class="btn btn-success custom-button" style="margin-bottom: 10px" href="@Url.Action("Details", "ProductAdmin", new { id = item.Id })">Chi tiết</a>
+                    <a class="btn btn-danger custom-button" style="margin-bottom: 10px" href="@Url.Action("Delete", "ProductAdmin", new { id = item.Id })">Xóa</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</body>
+</html>

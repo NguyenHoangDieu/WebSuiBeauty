@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WebSuiBeauty.Data.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .custom-table {
+        border: 1px solid #000;
+    }
+
+    .custom-row {
+        background-color: pink;
+        border: 1px solid #000;
+    }
+
+    .custom-button {
+        width: 80px;
+    }
+</style>
+<a class="btn btn-primary custom-button" style="margin-bottom:10px" href="@Url.Action("Create", "CustomersAdmin")">Thêm</a>
+<table class="table custom-table table-bordered">
+    <tr class="text-center custom-row">
+        <th>Họ tên</th>
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+        <th> @Html.DisplayNameFor(model => model.Password)</th>
+        <th>Ngày sinh</th>
+        <th>Quốc tịch</th>
+        <th>Thành phố</th>
+        <th>Số điện thoại</th>
+        <th>Địa chỉ</th>
+        <th> @Html.DisplayNameFor(model => model.Avatar)</th>
+        <th>Thao tác</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.First_Name)&nbsp;@Html.DisplayFor(modelItem => item.Last_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td class="text-center">
+                @((item.DateOfBirth).ToString("dd/MM/yyyy"))
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td >
+                @if (!string.IsNullOrEmpty(item.Avatar))
+                {
+                    <img style="width:5vw; height:5vw" src="@Url.Content(item.Avatar)" alt="Hình ảnh" />
+                }
+           
+            </td>
+            <td>
+                <a class="btn btn-warning custom-button" style="margin-bottom: 10px" href="@Url.Action("Edit", "CustomersAdmin", new { id = item.Id })">Sửa</a>
+                <a class="btn btn-success custom-button" style="margin-bottom: 10px" href="@Url.Action("Details", "CustomersAdmin", new { id = item.Id })">Chi tiết</a>
+                <a class="btn btn-danger custom-button" style="margin-bottom: 10px" href="@Url.Action("Delete", "CustomersAdmin", new { id = item.Id })">Xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>

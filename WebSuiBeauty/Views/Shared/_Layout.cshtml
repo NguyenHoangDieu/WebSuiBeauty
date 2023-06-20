@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SuiBeauty</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Assets/Style/responsive.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="~/Assets/Style/style.css" rel="stylesheet" />
+    <link href="~/Assets/Style/responsive.css" rel="stylesheet" />
+    <link href="~/Content/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Open+Sans:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Assets/Style/register_style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <style>
+        .navbar {
+            width: 100%;
+            float: left;
+            background-color: #fef4ec;
+            height: auto;
+            background-size: 100%;
+        }
+    </style>
+
+    <!-- header section start -->
+    <div class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar fixed-top justify-content-between">
+                <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="index.html">Trang chủ</a>
+                    <a href="products.html">Sản phẩm</a>
+                    <a href="about.html">Giới thiệu</a>
+                    <a href="client.html">Khách hàng</a>
+                    <a href="contact.html">Liên hệ</a>
+                </div>
+                <span class="toggle_icon" style="padding-left:1rem" onclick="openNav()"><img style="height: 70%;width:70%" src="~/Assets/Images/toggle-icon.png"></span>
+                <a class="logo" href="index.html"><img src="~/Assets/Images/logo.png"></a>
+                <form class="form-inline ">
+                    <div class="login_text" style="padding-right:1rem">
+                        <ul>
+                            <li><a href="@(Session["username"] != null ? Url.Action("Index", "Account") : Url.Action("Login", "Account"))"><i style="color:dimgray; font-size:1.5vw" class="fa fa-user-circle" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i style="color:dimgray; font-size:1.5vw" class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+                            @if (Session["username"] == null)
+                            {
+
+                                <li><a href="@Url.Action("Login", "Account")"><i style="color:dimgray; font-size:1.5vw" class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+                            }
+                            else
+                            {
+                                <li><a style="color: deeppink" href="">@Session["username"]</a></li>
+                                <li><a style="color: deeppink" href="@Url.Action("Logout","Account")"><i style="color:dimgray; font-size:1.5vw" class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                            }
+                        </ul>
+                    </div>
+                </form>
+            </nav>
+        </div>
+    </div>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />
+        <!-- Javascript files-->
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/plugin.js"></script>
+        <!-- sidebar -->
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/custom.js"></script>
+        <!-- javascript -->
+        <script src="js/owl.carousel.js"></script>
+        <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "100%";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
+        <script>
+            window.onload = function () {
+                document.body.style.width = window.innerWidth + "px";
+                document.body.style.height = window.innerHeight + "px";
+            };
+        </script>
+        <script>
+            $(window).scroll(function () {
+                var scrollTop = $(this).scrollTop();
+
+                if (scrollTop > 50) {
+                    $('body').addClass('scrolling-navbar');
+                } else {
+                    $('body').removeClass('scrolling-navbar');
+                }
+            });
+        </script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

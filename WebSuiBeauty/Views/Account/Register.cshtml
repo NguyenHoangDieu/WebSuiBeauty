@@ -1,0 +1,108 @@
+﻿@model WebSuiBeauty.Models.CustomerVM
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <section class="duyen-login-form">
+        <div class="duyen-login-form-grid">
+            <div class="wrapper">
+                <!--<div class="logo">
+                    <h1><a class="brand-logo" href="index.html">SuiBeauty xin chào!</a></h1>-->
+                <!-- <a class="brand-logo" href="#index.html">
+                    <img src="image-path" alt="Logo" title="Your logo" style="height:35px;" />
+                </a> -->
+                <!--</div>-->
+                <div class="duyen-login-block-grid">
+                    <div class="form-right-inf">
+
+                        <div class="login-form-content">
+                            <h2>Đăng ký</h2>
+                            @*@using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "msg", OnComplete = "clearAll" }))*@
+                            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "register-form" }))
+
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row mb-2">
+                                    <div id="msg">
+
+                                    </div>
+                                </div>
+                                <div class="one-frm">
+                                    @Html.LabelFor(x => x.First_Name, new { @class = "form-label fs-8" })
+                                    @Html.TextBoxFor(x => x.First_Name, new { @class = "form-control fs-8" })
+                                    @Html.ValidationMessageFor(x => x.First_Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="one-frm">
+                                    @Html.LabelFor(x => x.Last_Name, new { @class = "form-label fs-8" })
+                                    @Html.TextBoxFor(x => x.Last_Name, new { @class = "form-control fs-8" })
+                                    @Html.ValidationMessageFor(x => x.Last_Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="one-frm">
+                                    @Html.LabelFor(x => x.Email, new { @class = "form-label fs-8" })
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control fs-8", Type = "email" })
+                                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="one-frm">
+                                    @Html.LabelFor(x => x.Password, new { @class = "form-label fs-8" })
+                                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control fs-8", Type = "password" })
+                                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="one-frm">
+                                    @Html.LabelFor(x => x.DateofBirth, new { @class = "form-label fs-8" })
+                                    @Html.EditorFor(x => x.DateofBirth, new { htmlAttributes = new { @class = "form-control fs-8" }, Type = "date" })
+                                    @Html.ValidationMessageFor(x => x.DateofBirth, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="one-frm">
+                                    @Html.LabelFor(x => x.Phone, new { @class = "form-label fs-8" })
+                                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control fs-8" })
+                                    @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="one-frm">
+                                    @Html.LabelFor(x => x.Country, new { @class = "form-label fs-8" })
+                                    @Html.TextBoxFor(x => x.Country, new { @class = "form-control fs-8" })
+                                    @Html.ValidationMessageFor(x => x.Country, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="one-frm">
+                                    @Html.LabelFor(x => x.City, new { @class = "form-label fs-8" })
+                                    @Html.TextBoxFor(x => x.City, new { @class = "form-control fs-8" })
+                                    @Html.ValidationMessageFor(x => x.City, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="one-frm">
+                                    @Html.LabelFor(x => x.Address, new { @class = "form-label fs-8" })
+                                    @Html.TextAreaFor(x => x.Address, new { @class = "form-control fs-8" })
+                                    @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+                                </div>
+                                <button type="submit" class="btn btn-style mt-3">Đăng ký </button>
+                                <p class="already">Bạn đã có tài khoản <a href="@(Url.Action("Login", "Account"))">Đăng nhập</a></p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //form -->
+    </section>
+</body>
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        $("#form0").attr("enctype", "multipart/form-data")
+
+        function clearAll() {
+            $("#form0").trigger("reset");
+        }
+    </script>
+
+}
+
+
+

@@ -1,0 +1,229 @@
+﻿@model WebSuiBeauty.Data.Product
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <!-- banner section start -->
+    <div class="banner_section layout_padding">
+        <div id="carouselSlide" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h1 class="banner_taital">Sui <br>Beauty</h1>
+                                <p class="banner_text">Nét đẹp tự nhiên. Giữ mãi nét thanh xuân</p>
+                                <div class="read_bt"><a href="#">Mua Ngay</a></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="banner_img"><img src="~/Assets/Images/banner-img.png"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h1 class="banner_taital">Sui <br>Beauty</h1>
+                                <p class="banner_text">Giúp bạn có một diện mạo mới</p>
+                                <div class="read_bt"><a href="#">Mua Ngay</a></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="banner_img"><img src="~/Assets/Images/about-img.png"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner section end -->
+    <!-- product section start -->
+    <div class="product_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="product_taital">Sản Phẩm</h1>
+                </div>
+            </div>
+            <div class="product_section_2 layout_padding">
+                <div class="row">
+                    @foreach (var item in (List<WebSuiBeauty.Data.Product>)@ViewBag.SanPham)
+                    {
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="product_box">
+                                <h4 class="bursh_text">@item.Name</h4>
+                                @if (!string.IsNullOrEmpty(item.Image))
+                                {
+                                    <img src="@Url.Content(item.Image)" alt="Hình ảnh" />
+                                }
+                                <div class="btn_main">
+                                    <div class="buy_bt">
+                                        <ul>
+                                            <li><a href="#">Mua Ngay</a></li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="price_text"> Giá:@item.Price</h3>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="seemore_bt"><a href="#">Xem Thêm</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- product section end -->
+    <!-- about section start -->
+    <div class="about_section layout_padding">
+        <div class="container">
+            <div class="about_section_main">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="about_taital_main">
+                            <h1 class="about_taital">Giới Thiệu Về Cửa Hàng</h1>
+                            <p class="about_text">Sui Beauty ra đời và phát triển dựa trên mục đích mang đến cho khách hàng dựa vào 3 yếu tố tươi trẻ, sắc đẹp và thịnh vượng. Sui Beauty với sứ mệnh mang đến cho khách hàng vẻ đẹp hoàn hảo và tự tin hơn trong cuộc sống. Sui Beauty sở hữu nhiều dòng mỹ phẩm như: Trang điểm mặt, tẩy trang nước hoa. Sửa tắm, dưỡng thể..</p>
+                            <div class="readmore_bt"><a href="#">Đọc Thêm </a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div><img src="~/Assets/Images/about-img.png" class="image_3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about section end -->
+    <!-- contact section start -->
+    <div class="contact_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="contact_taital">Hỗ Trợ Khách Hàng</h1>
+                </div>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left10">Call : +01 1234567890</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left10">Email : demo@gmail.com</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="col-md-6">
+                    <div class="contact_main">
+                        <div class="contact_bt"><a href="#">Liên hệ theo mẫu</a></div>
+                        <div class="newletter_bt"><a href="#">Thư mới</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map_main">
+            <div class="map-responsive">
+                <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Haibatrung+Hanoi+Vietnam" width="600" height="400" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </div>
+    <!-- contact section end -->
+    <!-- footer section start -->
+    <div class="footer_section layout_padding">
+        <div class="container">
+            <div class="footer_logo"><a href="index.html"><img src="images/footer-logo.png"></a></div>
+            <div class="contact_section_2">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3 class="address_text">Liên hệ</h3>
+                        <div class="address_bt">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left10">Address : Hà Nội</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left10">Call : +01 1234567890</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left10">Email : demo@gmail.com</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="footer_logo_1"><a href="index.html"><img src="images/footer-logo.png"></a></div>
+                        <p class="dummy_text">Với phương châm luôn nỗ lực vì khách hàng thân yêu, SuiBeauty không ngừng cố gắng để xứng đáng là địa điểm mua sắm tin cậy đối với các bạn trẻ.</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="main">
+                            <h3 class="address_text">Best Products</h3>
+                            <p class="ipsum_text">dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="social_icon">
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- footer section end -->
+    <!-- copyright section start -->
+    <div class="copyright_section">
+        <div class="container-fluid">
+            <p class="copyright_text">2023 All Rights Reserved. Design by <a href="https://www.facebook.com/duyenduyen2803">DuyenNgo from HUST</a></p>
+        </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- javascript -->
+    <script src="js/owl.carousel.js"></script>
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    <script>
+        window.onload = function () {
+            document.body.style.width = window.innerWidth + "px";
+            document.body.style.height = window.innerHeight + "px";
+        };
+    </script>
+</body>
+

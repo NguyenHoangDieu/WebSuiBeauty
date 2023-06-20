@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<head>
+    <title>AdminDashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+</head>
+<style>
+    .custom-button {
+        justify-content: center;
+        align-items: center;
+        width: 180px;
+    }
+
+    .title {
+        font-size: 3rem;
+        color: deeppink;
+        font-weight: bold;
+    }
+</style>
+<body>
+    <h1 class="text-center title">Trang chủ ADMIN SuiBeautyShop</h1>
+
+</body>
+
+<script>
+    $(document).ready(function () {
+        $("#sidebarCollapse").on("click", function () {
+            $("#sidebar").toggleClass("active");
+            $(this).toggleClass("active");
+        });
+    });
+</script>
+

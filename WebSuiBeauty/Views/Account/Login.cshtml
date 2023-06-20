@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Assets/Style/responsive.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="~/Assets/Style/style.css" rel="stylesheet" />
+    <link href="~/Assets/Style/responsive.css" rel="stylesheet" />
+    <link href="~/Content/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Assets/Style/register_style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+    <section class="duyen-login-form">
+        <div class="duyen-login-form-grid">
+                <div class="duyen-login-block-grid">
+                    <div class="form-right-inf">
+                        @*<h2>Đăng nhập </h2>
+                        <div class="social-media">
+                            <a href="https://www.facebook.com/duyenduyen2803" class="fb"><span class="fab fa-facebook" aria-hidden="true"></span> Đăng nhập với Facebook</a>
+                            <a href="#" class="gg"><span class="fab fa-google" aria-hidden="true"></span> Đăng nhập với Google</a>
+                        </div>*@
+                        <div class="login-form-content">
+                            <h2 style="font-size:2rem; font-weight:bold">ĐĂNG NHẬP</h2>
+
+                            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "signin-form" }))
+                            {
+                                <div class="one-frm">
+                                    <input type="email" name="Email" required placeholder="Email của bạn" autofocus>
+                                </div>
+                                <div class="one-frm">
+                                    <input type="password" name="Password" required placeholder="Mật khẩu">
+                                </div>
+                                <label class="check-remaind">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    <p class="remember">Nhớ mật khẩu</p>
+                                </label>
+                                if (!ViewData.ModelState.IsValid)
+                                {
+                                    <div style="color: red" class="validation-summary-errors">
+                                        @Html.ValidationSummary()
+                                    </div>
+                                }
+                                <button type="submit" class="btn btn-style mt-3">Đăng nhập </button>
+                                <p class="already">Bạn chưa có tài khoản? <a href="@(Url.Action("Register", "Account"))">Đăng ký</a></p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- //form -->
+    </section>
+</body>

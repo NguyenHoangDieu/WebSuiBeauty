@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebSuiBeauty.Data.Employee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .custom-table {
+        border: 1px solid #000;
+    }
+
+    .custom-row {
+        background-color: pink;
+        border: 1px solid #000;
+    }
+
+    .custom-button {
+        width: 80px;
+    }
+</style>
+<a class="btn btn-primary custom-button" style="margin-bottom:10px" href="@Url.Action("Create", "EmployeesAdmin")">Thêm</a>
+<table class="table custom-table table-bordered">
+    <tr class="text-center custom-row">
+        <th>Họ và tên</th>
+        <th>Ngày sinh</th>
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+        <th>Địa chỉ</th>
+        <th>Số điện thoại</th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.PicturePath)
+        </th>*@
+        <th>Thao tác</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="text-center">
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)&nbsp;@Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateofBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.PicturePath)
+        </td>*@
+        <td>
+            <a class="btn btn-warning custom-button" style="margin-bottom: 10px" href="@Url.Action("Edit", "EmployeesAdmin", new { id = item.EmpID })">Sửa</a>
+            <a class="btn btn-success custom-button" style="margin-bottom: 10px" href="@Url.Action("Details", "EmployeesAdmin", new { id = item.EmpID })">Chi tiết</a>
+            <a class="btn btn-danger custom-button" style="margin-bottom: 10px" href="@Url.Action("Delete", "EmployeesAdmin", new { id = item.EmpID })">Xóa</a>
+        </td>
+    </tr>
+}
+
+</table>

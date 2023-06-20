@@ -1,0 +1,109 @@
+﻿
+@model WebSuiBeauty.Models.AdminLoginVM
+
+@{ Layout = null; }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin-Login</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Fontawesome/css/all.css" rel="stylesheet" />
+    <style>
+        .img-fluid{
+            padding-top: 120px;
+        }
+        .bg-image {
+            background-image: url(../Assets/Images/banner.jpg);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+            z-index: -1;
+        }
+        .box-login{
+            background-color: darkgreen;
+           
+            border-radius: 1vw;
+            padding: 2vw;
+        }
+    </style>
+</head>
+
+<body style="background-color: black">
+    <div class="bg-image">
+
+    </div>
+    <div class="container">
+        
+        @using (Html.BeginForm("LoginAdmin", "LoginAdmin", FormMethod.Post, new { @id = "loginForm" }))
+        {
+            @Html.ValidationSummary(true)
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-12 contents" style="padding-top:120px;">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 box-login text-center">
+                            <div class="mb-4">
+                                <h3 style="color:white">Đăng nhập</h3>
+                                <p class="mb-4" style="color:white">Đăng nhập tài khoản Admin</p>
+                            </div>
+                            <form>
+                                <div class="col-md-12 form-group first">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="input-group">
+                                        <label for="username" class="col-form-label"><i class="fa-duotone fa-user-vneck-hair fs-2"></i></label>&nbsp;&nbsp;
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @name = "username", @placeholder = "Username" } })
+                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger " })
+                                    </div>
+                                </div><br />
+                                <div class="col-md-12 form-group last mb-4">
+                                    <div class="input-group">
+                                        <label for="username" class="col-form-label"><i class="fa-duotone fa-lock-keyhole fs-2"></i></label>&nbsp;&nbsp;
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @name = "password", @type = "password", @placeholder = "Password" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+                                <div class="checkbox mt-3">
+                                    <label class="" style="color:white">
+                                        <input id="login-remember" type="checkbox" name="remember" value="1"> Nhớ mật khẩu
+                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span class="ml-5 justify-content-end">
+                                        <a href="#" class="forgot-pass" style="color:yellow">Quên mật khẩu</a>
+                                    </span>
+                                </div>
+                                <div class="col-md-12 mt-3 text-center">
+                                    <button type="submit" id="btn-login" class="btn btn-info col-12">Đăng nhập</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <footer class="footer fixed-bottom">
+        <div class="container-fluid">
+            <div class="row text-muted">
+                <div class="col-6 text-start">
+                    <p class="mb-0">
+                        <a class="text-muted nav-link" href="@Url.Action("LoginAdmin", "LoginAdmin")">&copy; @DateTime.Now.Year<strong>&nbsp;SuiBeauty</strong></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @*<script src="~/Scripts/bootstrap.bundle.js"></script>*@
+    <script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>
+
+
