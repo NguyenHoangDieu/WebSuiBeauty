@@ -21,6 +21,7 @@ namespace WebSuiBeauty.Data
         public int Quantity { set; get; }
 
         public decimal Price { set; get; }
+        public decimal Total { set; get; }
 
         [ForeignKey("OrderId")]
         public virtual Order Order { set; get; }

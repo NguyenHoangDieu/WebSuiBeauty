@@ -1,0 +1,95 @@
+﻿@model WebSuiBeauty.Data.Product
+@{
+    ViewBag.Title = "ViewDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Assets/Style/style.css" rel="stylesheet" />
+<!-- product category -->
+<body style="margin-top:100px; margin-left:10px">
+    <section id="aa-product-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="aa-product-details-area">
+                        <div class="aa-product-details-content">
+                            <div class="row">
+                                <!-- Modal view slider -->
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="aa-product-view-slider">
+                                        <div id="demo-1" class="simpleLens-gallery-container">
+                                            <div class="simpleLens-container">
+                                                <div class="simpleLens-big-image-container">
+                                                    <img style="width:100%;height:250px" src="@Url.Content(Model.Image)" class="simpleLens-big-image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal view content -->
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <div class="aa-product-view-content">
+                                        <h3 style="color:deeppink"><strong> @Model.Name</strong></h3>
+                                        <div class="aa-product-rating">
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                if (ViewBag.AvgRate >= i)
+                                                {
+                                                    <span class="fa fa-star" style="color: #ff6600"></span> }
+                                                else
+                                                {
+                                                    <span class="fa fa-star-o" style="color: #ff6600"></span>}
+                                            }
+
+                                        </div>
+
+                                        <div class="aa-price-block">
+                                            <span class="aa-product-view-price">Giá: <b>@Model.Price.ToString("N0")đ</b></span>
+
+                                            @{ TempData["returnURL"] = Request.RawUrl; }
+
+
+                                        </div>
+                                        <p style="margin-left:0px !important">Mô tả: @Model.Description</p>
+                                        <div class="container-fluid" style="display:flex;align-items: center">
+                                            <h4>Số lượng:</h4>
+                                            <div class="aa-prod-quantity" style="margin-left:10px;margin-bottom:2px">
+                                                <form action="">
+                                                    <input type="number" name="quantity" min="1" max="99" maxlength="2" value="1" />
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                        <div class="aa-prod-view-bottom" style="margin-top:20px">
+                                            <a style="padding:10px; border:1px solid black;background-color:pink; border-radius:20px; align-items:center"
+                                               href="@(Session["username"] != null ? Url.Action("AddToCart", "Product", new { id=Model.Id}) : Url.Action("Login", "Account"))">
+                                                Thêm giỏ hàng
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <!-- Related product -->
+                        <div class="aa-product-related-item">
+                            <h3 style="color:deeppink; font-weight:bold">Sản phẩm liên quan</h3>
+                            <hr />
+                            <ul class="aa-product-catg aa-related-item-slider">
+                                <li>
+                                    <div class="row">
+                                        @foreach (var item in (List<WebSuiBeauty.Data.Product>)@ViewBag.RelatedProducts)
+                                        {
+                                            { Html.RenderPartial("_ProductPartial", item); }
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+

@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <body>
     <!-- banner section start -->
     <div class="banner_section layout_padding">
@@ -41,6 +42,7 @@
         </div>
     </div>
     <!-- banner section end -->
+  
     <!-- product section start -->
     <div class="product_section layout_padding">
         <div class="container">
@@ -50,30 +52,71 @@
                 </div>
             </div>
             <div class="product_section_2 layout_padding">
-                <div class="row">
-                    @foreach (var item in (List<WebSuiBeauty.Data.Product>)@ViewBag.SanPham)
-                    {
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="product_box">
-                                <h4 class="bursh_text">@item.Name</h4>
-                                @if (!string.IsNullOrEmpty(item.Image))
+                <div class="container" style="border:1px solid gray; border-radius:10px; padding:20px">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="dd-button" data-bs-toggle="tab" data-bs-target="#dd-tab" type="button" role="tab" aria-controls="dd-tab" aria-selected="true">Dưỡng da</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="td-button" data-bs-toggle="tab" data-bs-target="#td-tab" type="button" role="tab" aria-controls="td-tab" aria-selected="false">Trang điểm</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="sm-button" data-bs-toggle="tab" data-bs-target="#sm-tab" type="button" role="tab" aria-controls="sm-tab" aria-selected="false">Son môi</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="db-button" data-bs-toggle="tab" data-bs-target="#db-tab" type="button" role="tab" aria-controls="db-tab" aria-selected="false">Dưỡng body</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tss-tab" data-bs-toggle="tab" data-bs-target="#tss-tab" type="button" role="tab" aria-controls="tss-tab" aria-selected="false">Trang sức</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="dd-tab" role="tabpanel" aria-labelledby="dd-tab">
+                            <div class="row">
+                                @foreach (var item in (List<WebSuiBeauty.Data.Product>)@ViewBag.DuongDa)
                                 {
-                                    <img src="@Url.Content(item.Image)" alt="Hình ảnh" />
+                                    { Html.RenderPartial("_ProductPartial", item); }
                                 }
-                                <div class="btn_main">
-                                    <div class="buy_bt">
-                                        <ul>
-                                            <li><a href="#">Mua Ngay</a></li>
-                                        </ul>
-                                    </div>
-                                    <h3 class="price_text"> Giá:@item.Price</h3>
-                                </div>
                             </div>
                         </div>
-                    }
+                        <div class="tab-pane" id="td-tab" role="tabpanel" aria-labelledby="td">
+                            <div class="row">
+                                @foreach (var item in (List<WebSuiBeauty.Data.Product>)@ViewBag.TrangDiem)
+                                {
+                                    { Html.RenderPartial("_ProductPartial", item); }
+                                }
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="sm-tab" role="tabpanel" aria-labelledby="sm-tab">
+                            <div class="row">
+                                @foreach (var item in (List<WebSuiBeauty.Data.Product>)@ViewBag.SonMoi)
+                                {
+                                    { Html.RenderPartial("_ProductPartial", item); }
+                                }
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="db-tab" role="tabpanel" aria-labelledby="db-tab">
+                            <div class="row">
+                                @foreach (var item in (List<WebSuiBeauty.Data.Product>)@ViewBag.DuongBody)
+                                {
+                                    { Html.RenderPartial("_ProductPartial", item); }
+                                }
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tss-tab" role="tabpanel" aria-labelledby="tss-tab">
+                            <div class="row">
+                                @foreach (var item in (List<WebSuiBeauty.Data.Product>)@ViewBag.TrangSuc)
+                                {
+                                    { Html.RenderPartial("_ProductPartial", item); }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seemore_bt"><a href="#">Xem Thêm</a></div>
                 </div>
-                <div class="seemore_bt"><a href="#">Xem Thêm</a></div>
             </div>
+
         </div>
     </div>
     <!-- product section end -->
@@ -224,6 +267,19 @@
             document.body.style.width = window.innerWidth + "px";
             document.body.style.height = window.innerHeight + "px";
         };
+    </script>
+    <script>
+        var firstTabEl = document.querySelector('#myTab li:last-child a')
+        var firstTab = new bootstrap.Tab(firstTabEl)
+
+        firstTab.show()
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
     </script>
 </body>
 

@@ -131,13 +131,18 @@
     <Compile Include="Areas\CustomersAdminController.cs" />
     <Compile Include="Areas\EmployeesAdminController.cs" />
     <Compile Include="Areas\LoginAdminController.cs" />
+    <Compile Include="Areas\MenuItemsController.cs" />
     <Compile Include="Areas\ProductAdminController.cs" />
     <Compile Include="Areas\ProductCategoriesAdminController.cs" />
     <Compile Include="Areas\ProfileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoadDataController.cs" />
+    <Compile Include="Controllers\MyCartController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Data\AdminLogin.cs" />
     <Compile Include="Data\Customer.cs" />
     <Compile Include="Data\Employee.cs" />
+    <Compile Include="Data\MenuItem.cs" />
     <Compile Include="Data\Role.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -161,6 +166,14 @@
     <Compile Include="Migrations\202306120844316_adminEmployeeInfo.cs" />
     <Compile Include="Migrations\202306120844316_adminEmployeeInfo.designer.cs">
       <DependentUpon>202306120844316_adminEmployeeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307040606337_add-menu.cs" />
+    <Compile Include="Migrations\202307040606337_add-menu.designer.cs">
+      <DependentUpon>202307040606337_add-menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307171900219_add-detail-order.cs" />
+    <Compile Include="Migrations\202307171900219_add-detail-order.designer.cs">
+      <DependentUpon>202307171900219_add-detail-order.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Abstract\Auditable.cs" />
@@ -212,6 +225,18 @@
     <Content Include="Assets\Images\search-icon.png" />
     <Content Include="Assets\Images\toggle-icon.png" />
     <Content Include="Assets\Images\user-icon.png" />
+    <Content Include="Assets\Js\bootstrap.js" />
+    <Content Include="Assets\Js\custom.js" />
+    <Content Include="Assets\Js\jquery.min.js" />
+    <Content Include="Assets\Js\jquery.simpleGallery.js" />
+    <Content Include="Assets\Js\jquery.simpleLens.js" />
+    <Content Include="Assets\Js\jquery.smartmenus.bootstrap.js" />
+    <Content Include="Assets\Js\jquery.smartmenus.js" />
+    <Content Include="Assets\Js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Assets\Js\nouislider.js" />
+    <Content Include="Assets\Js\sequence-theme.modern-slide-in.js" />
+    <Content Include="Assets\Js\sequence.js" />
+    <Content Include="Assets\Js\slick.js" />
     <Content Include="Assets\Style\register_style.css" />
     <Content Include="Assets\Style\responsive.css" />
     <Content Include="Assets\Style\style.css" />
@@ -328,9 +353,18 @@
     <Content Include="Views\CustomersAdmin\Edit.cshtml" />
     <Content Include="Views\CustomersAdmin\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Shared\_ProductPartial.cshtml" />
+    <Content Include="Views\MenuItems\Create.cshtml" />
+    <Content Include="Views\MenuItems\Delete.cshtml" />
+    <Content Include="Views\MenuItems\Details.cshtml" />
+    <Content Include="Views\MenuItems\Edit.cshtml" />
+    <Content Include="Views\MenuItems\Index.cshtml" />
+    <Content Include="Views\Product\ViewDetails.cshtml" />
+    <Content Include="Views\MyCart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\LoadData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -374,6 +408,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306120844316_adminEmployeeInfo.resx">
       <DependentUpon>202306120844316_adminEmployeeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307040606337_add-menu.resx">
+      <DependentUpon>202307040606337_add-menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307171900219_add-detail-order.resx">
+      <DependentUpon>202307171900219_add-detail-order.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

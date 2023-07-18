@@ -8,6 +8,9 @@
 <head>
     <title>Index</title>
     <style>
+        body{
+            display:inline-block
+        }
         .custom-table {
             border: 1px solid #000;
         }
@@ -24,48 +27,49 @@
 </head>
 
 <body>
-    <a class="btn btn-primary custom-button" style="margin-bottom:10px" href="@Url.Action("Create", "ProductCategoriesAdmin")">Thêm</a>
-    <table class="table custom-table table-bordered">
-        <tr class="text-center custom-row">
-            <th>Tên danh mục</th>
-            <th>Mã danh mục</th>
-            <th>Mô tả</th>
-            <th>Cấp cha</th>
-            <th>@Html.DisplayNameFor(model => model.CreatedDate)</th>
-            <th>@Html.DisplayNameFor(model => model.Status)</th>
-            <th>Thao tác</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Alias)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.ParentId)
-                </td>
-                <td class="text-center">
-                    @((item.CreatedDate ?? DateTime.Now).ToString("dd/MM/yyyy"))
-                </td>
-                <td class="text-center" style="color:@(item.Status ? "forestgreen" : "red"); font-weight:bold">
-                    @(item.Status?"Còn hàng":"Hết hàng")
-                </td>
-            
-                <td class="text-center">
-                    <a class="btn btn-warning custom-button" style="margin-bottom: 10px" href="@Url.Action("Edit", "ProductCategoriesAdmin", new { id = item.Id })">Sửa</a>
-                    <a class="btn btn-success custom-button" style="margin-bottom: 10px" href="@Url.Action("Details", "ProductCategoriesAdmin", new { id = item.Id })">Chi tiết</a>
-                    <a class="btn btn-danger custom-button" style="margin-bottom: 10px" href="@Url.Action("Delete", "ProductCategoriesAdmin", new { id = item.Id })">Xóa</a>
-                </td>
+            <a class="btn btn-primary custom-button" style="margin-bottom:10px" href="@Url.Action("Create", "ProductCategoriesAdmin")">Thêm</a>
+        <table class="table custom-table table-bordered">
+            <tr class="text-center custom-row">
+                <th>Tên danh mục</th>
+                <th>Mã danh mục</th>
+                <th>Mô tả</th>
+                <th>Cấp cha</th>
+                <th>@Html.DisplayNameFor(model => model.CreatedDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                <th>Thao tác</th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Alias)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.ParentId)
+                    </td>
+                    <td class="text-center">
+                        @((item.CreatedDate ?? DateTime.Now).ToString("dd/MM/yyyy"))
+                    </td>
+                    <td class="text-center" style="color:@(item.Status ? "forestgreen" : "red"); font-weight:bold">
+                        @(item.Status?"Còn hàng":"Hết hàng")
+                    </td>
+
+                    <td class="text-center">
+                        <a class="btn btn-warning custom-button" style="margin-bottom: 10px" href="@Url.Action("Edit", "ProductCategoriesAdmin", new { id = item.Id })">Sửa</a>
+                        <a class="btn btn-success custom-button" style="margin-bottom: 10px" href="@Url.Action("Details", "ProductCategoriesAdmin", new { id = item.Id })">Chi tiết</a>
+                        <a class="btn btn-danger custom-button" style="margin-bottom: 10px" href="@Url.Action("Delete", "ProductCategoriesAdmin", new { id = item.Id })">Xóa</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
 
 </body>

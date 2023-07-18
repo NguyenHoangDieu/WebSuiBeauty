@@ -446,9 +446,10 @@ button {
 .btn_main {
     width: 100%;
     display: flex;
-    background-color: #000;
+    background-color: deeppink;
     height: auto;
     padding: 20px 10px 13px 10px;
+    border-radius: 0 0 15px 15px
 }
 
 .buy_bt {
@@ -462,6 +463,8 @@ button {
 }
 
 .buy_bt li a {
+    width:30px;
+    justify-content:center;
     float: left;
     font-size: 12px;
     color: #252525;
@@ -474,7 +477,6 @@ button {
 
 .buy_bt li a:hover {
     background-color: #f5ddb6;
-    color: #ffffff;
 }
 
 .buy_bt li.active a {
@@ -928,3 +930,5 @@ button {
 .margin_top90 {
     margin-top: 90px;
 }
+
+

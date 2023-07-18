@@ -25,15 +25,13 @@
 </style>
 <body>
     <h1 class="text-center title">Trang chủ ADMIN SuiBeautyShop</h1>
-
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
 </body>
 
-<script>
-    $(document).ready(function () {
-        $("#sidebarCollapse").on("click", function () {
-            $("#sidebar").toggleClass("active");
-            $(this).toggleClass("active");
-        });
-    });
-</script>
 
