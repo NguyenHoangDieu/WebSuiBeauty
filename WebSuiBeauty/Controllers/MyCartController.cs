@@ -35,11 +35,11 @@ namespace WebSuiBeauty.Controllers
 
                 int productId = Convert.ToInt32(formcoll["shcartID-" + i + ""]);
                 var orderDetails = TempDataVM.items.FirstOrDefault(x => x.ProductId == productId);
-
+                var product = db.Products.Where(x => x.Id == productId).FirstOrDefault();
 
                 int qty = Convert.ToInt32(formcoll["Qty-" + i + ""]);
                 orderDetails.Quantity = qty;
-                orderDetails.Price = orderDetails.Price;
+                orderDetails.Price = product.PriceAfterPromotion??0;
                 orderDetails.Total = qty * orderDetails.Price;
                 TempDataVM.items.RemoveAll(x => x.ProductId == productId);
 

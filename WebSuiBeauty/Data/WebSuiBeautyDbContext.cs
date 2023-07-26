@@ -18,6 +18,7 @@ namespace WebSuiBeauty.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ProductTag> ProductTags { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<ContentTag> ContentTags { get; set; }
         public DbSet<ContentCategory> ContentCategories { get; set; }

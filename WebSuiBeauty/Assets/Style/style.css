@@ -38,16 +38,20 @@ html {
 }
 
 body {
-    color: #666666;
-    font-size: 14px;
-    line-height: 1.80857;
-    font-weight: normal;
-    overflow-x: hidden;
-    font-family: 'Open Sans', sans-serif;
+
 }
-.container-fluid{
-    padding-left:0px;
-    padding-right:0px;
+.navbar .fixed-top .navbar-expand-lg {
+    background-color: papayawhip;
+    display: flex;
+    align-items: center
+}
+.navbar-brand {
+    padding-bottom: 25px;
+    margin-left: 30px
+}
+.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 a {
     color: #1f1f1f;
@@ -69,7 +73,6 @@ h6 {
     letter-spacing: 0;
     font-weight: normal;
     position: relative;
-    padding: 0 0 10px 0;
     font-weight: normal;
     line-height: normal;
     color: #111111;
@@ -132,7 +135,7 @@ ol {
 }
 
 p {
-    margin: 20px;
+    margin-top: 20px;
     font-weight: 300;
     font-size: 15px;
     line-height: 24px;
@@ -326,7 +329,7 @@ button {
 .banner_section {
     width: 100%;
     float: left;
-    background-image: url(../images/banner-bg.png);
+    background-image: url(../Images/banner-bg.png);
     height: auto;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -337,9 +340,9 @@ button {
     margin: 0 auto;
     font-size: 100px;
     color: #000;
-    line-height: 90px;
     padding-top: 20px;
     font-family: 'Great Vibes', cursive;
+
 }
 
 .banner_text {
@@ -525,7 +528,7 @@ button {
 .about_section {
     width: 100%;
     float: left;
-    background-color: #fef4ec;
+   
     height: auto;
     padding-bottom: 90px;
 }

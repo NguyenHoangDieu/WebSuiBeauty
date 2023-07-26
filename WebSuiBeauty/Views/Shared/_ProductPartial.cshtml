@@ -1,12 +1,12 @@
 ﻿@model WebSuiBeauty.Data.Product
 <div class="col-lg-3 col-sm-6">
     <div class="product_box" style="border-radius:15px">
-        <h5 class="bursh_text" style="color:deeppink">@Model.Name</h5>
+        <h5 class="bursh_text" style="color:deeppink;height:40px">@Model.Name.ToUpper()</h5>
         @if (!string.IsNullOrEmpty(Model.Image))
         {
             <div style="padding:20px">
                 <div class="container" style="border-radius: 15px; background: pink;padding:10px">
-                    <img style="width:100%;height:100%" src="@Url.Content(Model.Image)" alt="Hình ảnh" />
+                    <img style="width:100%;height:200px" src="@Url.Content(Model.Image)" alt="Hình ảnh" />
                 </div>
             </div>
         }
@@ -20,6 +20,7 @@
                 </ul>
             </div>
             <h3 class="price_text">Giá:@(Model.Price.ToString("N0"))đ</h3>
+            <span class="price_promotion" style="color:white;font-size:12px;margin-bottom:5px;margin-left:5px">-@((int)Model.PromotionPrice)%</span>
         </div>
     </div>
 </div>

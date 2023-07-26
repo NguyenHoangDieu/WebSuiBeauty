@@ -122,10 +122,19 @@ namespace WebSuiBeauty.Areas
             if (ModelState.IsValid)
             {
                 string filePath = model.Image;
+                if (model.Quantity > 0)
+                {
+                    model.Status = true;
+                }
+                else
+                {
+                    model.Status = false;
+                }
                 if (model.ImageUpload != null && model.ImageUpload.ContentLength>0)
                 {
                     filePath = Path.Combine("~/Assets/Images", Guid.NewGuid().ToString() + Path.GetExtension(model.ImageUpload.FileName));
                     model.ImageUpload.SaveAs(Server.MapPath(filePath));
+                   
                     Product product = new Product
                     {
                         Name = model.Name,
@@ -136,8 +145,10 @@ namespace WebSuiBeauty.Areas
                         Warranty = model.Warranty,
                         Quantity = model.Quantity,
                         Description = model.Description,
+                        PriceAfterPromotion = model.Price - ((model.Price)/100*(model.PromotionPrice??0)),
                         Status = model.Status,
                     };
+                 
                     db.Products.Add(product);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -153,6 +164,7 @@ namespace WebSuiBeauty.Areas
                         Warranty = model.Warranty,
                         Quantity = model.Quantity,
                         Description = model.Description,
+                        PriceAfterPromotion = model.Price - ((model.Price) / 100 * (model.PromotionPrice ?? 0)),
                         Status = model.Status,
                     };
                     db.Products.Add(product);
@@ -188,7 +200,6 @@ namespace WebSuiBeauty.Areas
                 Warranty = product.Warranty,
                 Quantity = product.Quantity,
                 Description = product.Description,
-                Status = product.Status,
                 Image = product.Image,
 
             };
@@ -205,7 +216,14 @@ namespace WebSuiBeauty.Areas
         {
             if (ModelState.IsValid)
             {
-              
+                if (model.Quantity > 0)
+                {
+                    model.Status = true;
+                }
+                else
+                {
+                    model.Status = false;
+                }
                 string filePath = model.Image;
                 if (model.ImageUpload != null && model.ImageUpload.ContentLength > 0)
                 {
@@ -222,6 +240,7 @@ namespace WebSuiBeauty.Areas
                         Warranty = model.Warranty,
                         Quantity = model.Quantity,
                         Description = model.Description,
+                        PriceAfterPromotion = model.Price - ((model.Price) / 100 * (model.PromotionPrice ?? 0)),
                         Status = model.Status,
                     };
                     db.Entry(product).State = EntityState.Modified;
@@ -241,6 +260,7 @@ namespace WebSuiBeauty.Areas
                         Quantity = model.Quantity,
                         Description = model.Description,
                         Image = filePath,
+                        PriceAfterPromotion = model.Price - ((model.Price) / 100 * (model.PromotionPrice ?? 0)),
                         Status = model.Status,
                     };
                     db.Entry(product).State = EntityState.Modified;

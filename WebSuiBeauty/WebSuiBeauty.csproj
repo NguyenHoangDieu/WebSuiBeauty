@@ -143,6 +143,7 @@
     <Compile Include="Data\Customer.cs" />
     <Compile Include="Data\Employee.cs" />
     <Compile Include="Data\MenuItem.cs" />
+    <Compile Include="Data\Review.cs" />
     <Compile Include="Data\Role.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -174,6 +175,14 @@
     <Compile Include="Migrations\202307171900219_add-detail-order.cs" />
     <Compile Include="Migrations\202307171900219_add-detail-order.designer.cs">
       <DependentUpon>202307171900219_add-detail-order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307212120310_add-review.cs" />
+    <Compile Include="Migrations\202307212120310_add-review.designer.cs">
+      <DependentUpon>202307212120310_add-review.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307260457522_add-price-promotion.cs" />
+    <Compile Include="Migrations\202307260457522_add-price-promotion.designer.cs">
+      <DependentUpon>202307260457522_add-price-promotion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Abstract\Auditable.cs" />
@@ -414,6 +423,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307171900219_add-detail-order.resx">
       <DependentUpon>202307171900219_add-detail-order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307212120310_add-review.resx">
+      <DependentUpon>202307212120310_add-review.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307260457522_add-price-promotion.resx">
+      <DependentUpon>202307260457522_add-price-promotion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -4,30 +4,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 <link href="~/Assets/Style/style.css" rel="stylesheet" />
 <!-- product category -->
 <body style="margin-top:100px; margin-left:10px">
+
     <section id="aa-product-details">
+
         <div class="container">
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="aa-product-details-area">
                         <div class="aa-product-details-content">
                             <div class="row">
                                 <!-- Modal view slider -->
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <div class="aa-product-view-slider">
-                                        <div id="demo-1" class="simpleLens-gallery-container">
-                                            <div class="simpleLens-container">
-                                                <div class="simpleLens-big-image-container">
-                                                    <img style="width:100%;height:250px" src="@Url.Content(Model.Image)" class="simpleLens-big-image">
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12" style="display:flex;align-items:center">
+                                    <div id="demo-1" class="simpleLens-gallery-container" style="display:flex;align-items:center;justify-content:center;width:100%">
+                                        <img style="width:80%;height:270px;border-radius:15px" src="@Url.Content(Model.Image)" class="simpleLens-big-image">
                                     </div>
                                 </div>
                                 <!-- Modal view content -->
-                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                <div class="col-md-8 col-sm-8 col-xs-12" style="background-color:papayawhip; padding:20px; border-radius:15px">
                                     <div class="aa-product-view-content">
                                         <h3 style="color:deeppink"><strong> @Model.Name</strong></h3>
                                         <div class="aa-product-rating">
@@ -44,14 +46,14 @@
                                         </div>
 
                                         <div class="aa-price-block">
-                                            <span class="aa-product-view-price">Giá: <b>@Model.Price.ToString("N0")đ</b></span>
+                                            <p style="margin:0px !important" class="aa-product-view-price">Giá gốc: <span style="font-weight:bold;text-decoration:line-through;color:red">@Model.Price.ToString("N0")đ</span></p>
 
                                             @{ TempData["returnURL"] = Request.RawUrl; }
-
-
+                                            <p style="margin:0px !important">Giảm giá: <span style="font-weight:bold">@((int)Model.PromotionPrice)%</span></p>
+                                            <p style="margin:0px !important">Giá đã giảm: <span style="font-weight:bold">@((Model.PriceAfterPromotion ?? 0).ToString("N0"))đ</span></p>
                                         </div>
-                                        <p style="margin-left:0px !important">Mô tả: @Model.Description</p>
-                                        <div class="container-fluid" style="display:flex;align-items: center">
+                                        <p style="margin:0px !important">Mô tả: @Model.Description</p>
+                                        <div class="container-fluid" style="display:flex;align-items: center;margin-top:20px">
                                             <h4>Số lượng:</h4>
                                             <div class="aa-prod-quantity" style="margin-left:10px;margin-bottom:2px">
                                                 <form action="">
@@ -61,16 +63,109 @@
 
                                         </div>
                                         <div class="aa-prod-view-bottom" style="margin-top:20px">
-                                            <a style="padding:10px; border:1px solid black;background-color:pink; border-radius:20px; align-items:center"
+                                            <a style="padding:10px;background-color:deeppink;color:white; border-radius:5px"
                                                href="@(Session["username"] != null ? Url.Action("AddToCart", "Product", new { id=Model.Id}) : Url.Action("Login", "Account"))">
-                                                Thêm giỏ hàng
+                                                <span class="fa fa-shopping-cart" style="color: white;font-size:18px"></span> Thêm giỏ hàng
                                             </a>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <br /><br />
+                        <div class="aa-product-details-bottom">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="dd-button" data-bs-toggle="tab" data-bs-target="#dd-tab" type="button" role="tab" aria-controls="dd-tab" aria-selected="true">Mô tả</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="td-button" data-bs-toggle="tab" data-bs-target="#td-tab" type="button" role="tab" aria-controls="td-tab" aria-selected="false">Đánh giá</button>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="dd-tab" role="tabpanel" aria-labelledby="dd-tab">
+                                    <div class="container">
+                                        <p>@Model.Description</p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="td-tab" role="tabpanel" aria-labelledby="td-tab">
+                                    <div class="container-fluid" style="margin-top:20px">
+                                        <h4>Có <b>@ViewBag.TotalReviews</b> đánh giá cho sản phẩm @Model.Name</h4>
+                                        <ul class="aa-review-nav">
+                                            @if (ViewBag.Reviews != null)
+                                            {
+                                                foreach (var item in ViewBag.Reviews)
+                                                {
+                                                    <li>
+                                                        <div class="review">
+                                                            <div class="container" style="display: flex;align-items:center">
+                                                                <a href="#">
+                                                                    <img style="width:50px;height:50px" class="media-object" src="~/Assets/Images/user.png" alt="girl image">
+                                                                </a>
+                                                                <p style="font-weight:bold">Khách hàng: @item.Name</p>
+                                                            </div>
+                                                            <div class="container" style="background-color:pink;padding:15px;border-radius:10px;margin-top:10px">
+                                                                <h4 class="media-heading"><strong>@item.Name</strong> - <span>@item.DateTime</span></h4>
+                                                                <div class="aa-product-rating">
+                                                                    @for (int i = 1; i <= 5; i++)
+                                                                    {
+                                                                        if (@item.Rate >= i)
+                                                                        {
+                                                                            <span style="color:orange" class="fa fa-star"></span> }
+                                                                        else
+                                                                        {
+                                                                            <span class="fa fa-star-o"></span>}
+                                                                    }
+
+                                                                </div>
+                                                                <h5>Đánh giá: <span style="font-weight:400">@item.Review1</span></h5>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                }
+                                            }
+
+                                        </ul>
+                                        <hr />
+                                        <h4>Thêm đánh giá</h4>
+                                        @if (Session["username"] != null)
+                                        {
+                                            using (Html.BeginForm("AddReview", "Product", new { productID = @Model.Id }, FormMethod.Post, new { @class = "aa-review-form" }))
+                                            {
+                                                <div class="aa-your-rating">
+                                                    <h4 style="font-weight:bold;color:deeppink;margin-top:20px;margin-bottom:10px">Đánh giá của bạn</h4>
+                                                    <input type="number" name="rate" min="1" max="5" maxlength="1" value="1" />
+
+                                                </div> <!-- review form -->
+
+                                                <div class="form-group">
+                                                    <label for="message">Nhận xét</label>
+                                                    <textarea class="form-control" rows="3" name="message"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name">Họ và tên</label>
+                                                    <input type="text" class="form-control" name="name" placeholder="Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" class="form-control" name="email" placeholder="example@gmail.com">
+                                                </div>
+
+                                                <button type="submit" class="btn btn-default aa-review-submit" style="background-color:deeppink;color:white;padding:10px;border-radius:10px;margin-top:15px">Gửi đánh giá</button> }
+                                        }
+                                        else
+                                        {
+                                            <label style="color:red;margin-bottom:10px">Vui lòng đăng nhập để đánh giá sản phẩm!</label>
+
+                                        }
+                                        <hr />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Related product -->
                         <div class="aa-product-related-item">
                             <h3 style="color:deeppink; font-weight:bold">Sản phẩm liên quan</h3>
@@ -91,5 +186,11 @@
             </div>
         </div>
     </section>
+    <script>
+        var firstTabEl = document.querySelector('#myTab li:last-child a')
+        var firstTab = new bootstrap.Tab(firstTabEl)
+
+        firstTab.show()
+    </script>
 </body>
 

@@ -33,6 +33,7 @@ namespace WebSuiBeauty.Data
         public decimal Price { set; get; }
 
         public decimal? PromotionPrice { set; get; }
+        public decimal? PriceAfterPromotion { set; get; }
 
         public int? Warranty { set; get; }
 
