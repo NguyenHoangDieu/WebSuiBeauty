@@ -61,7 +61,7 @@
                         @(item.Status?"Còn hàng":"Hết hàng")
                     </td>
 
-                    <td class="text-center">
+                    <td class="col-1 text-center">
                         <a class="btn btn-warning custom-button" style="margin-bottom: 10px" href="@Url.Action("Edit", "ProductCategoriesAdmin", new { id = item.Id })">Sửa</a>
                         <a class="btn btn-success custom-button" style="margin-bottom: 10px" href="@Url.Action("Details", "ProductCategoriesAdmin", new { id = item.Id })">Chi tiết</a>
                         <a class="btn btn-danger custom-button" style="margin-bottom: 10px" href="@Url.Action("Delete", "ProductCategoriesAdmin", new { id = item.Id })">Xóa</a>
@@ -70,6 +70,5 @@
             }
 
         </table>
-    </div>
 
 </body>

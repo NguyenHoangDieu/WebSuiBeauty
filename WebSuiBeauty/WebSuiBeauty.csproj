@@ -132,13 +132,16 @@
     <Compile Include="Areas\EmployeesAdminController.cs" />
     <Compile Include="Areas\LoginAdminController.cs" />
     <Compile Include="Areas\MenuItemsController.cs" />
+    <Compile Include="Areas\OrdersAdminController.cs" />
     <Compile Include="Areas\ProductAdminController.cs" />
     <Compile Include="Areas\ProductCategoriesAdminController.cs" />
     <Compile Include="Areas\ProfileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoadDataController.cs" />
     <Compile Include="Controllers\MyCartController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ThankYouController.cs" />
     <Compile Include="Data\AdminLogin.cs" />
     <Compile Include="Data\Customer.cs" />
     <Compile Include="Data\Employee.cs" />
@@ -184,6 +187,14 @@
     <Compile Include="Migrations\202307260457522_add-price-promotion.designer.cs">
       <DependentUpon>202307260457522_add-price-promotion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307291143486_changeInt.cs" />
+    <Compile Include="Migrations\202307291143486_changeInt.designer.cs">
+      <DependentUpon>202307291143486_changeInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307300747030_changeTotal.cs" />
+    <Compile Include="Migrations\202307300747030_changeTotal.designer.cs">
+      <DependentUpon>202307300747030_changeTotal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\Abstract\Auditable.cs" />
     <Compile Include="Data\Abstract\IAuditable.cs" />
@@ -202,6 +213,8 @@
     <Compile Include="Models\AdminLoginVM.cs" />
     <Compile Include="Models\CategoryVM.cs" />
     <Compile Include="Models\CustomerVM.cs" />
+    <Compile Include="Models\OrderVM.cs" />
+    <Compile Include="Models\PaymentMethodVM.cs" />
     <Compile Include="Models\ProductVM.cs" />
     <Compile Include="Models\TempDataVM.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
@@ -370,10 +383,17 @@
     <Content Include="Views\MenuItems\Index.cshtml" />
     <Content Include="Views\Product\ViewDetails.cshtml" />
     <Content Include="Views\MyCart\Index.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\ThankYou\Index.cshtml" />
+    <Content Include="Views\Order\ListOrder.cshtml" />
+    <Content Include="Views\OrdersAdmin\Create.cshtml" />
+    <Content Include="Views\OrdersAdmin\Delete.cshtml" />
+    <Content Include="Views\OrdersAdmin\Details.cshtml" />
+    <Content Include="Views\OrdersAdmin\Edit.cshtml" />
+    <Content Include="Views\OrdersAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\LoadData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -429,6 +449,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307260457522_add-price-promotion.resx">
       <DependentUpon>202307260457522_add-price-promotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307291143486_changeInt.resx">
+      <DependentUpon>202307291143486_changeInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307300747030_changeTotal.resx">
+      <DependentUpon>202307300747030_changeTotal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

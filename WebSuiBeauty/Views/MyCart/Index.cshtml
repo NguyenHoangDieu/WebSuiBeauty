@@ -12,7 +12,7 @@
         <div class="aa-catg-head-banner-area">
             <div class="container">
                 <div class="aa-catg-head-banner-content" >
-                    <h2 style="font-weight:bold;color:deeppink">Giỏ hàng của bạn</h2>
+                    <h2 style="font-weight:bold;color:deeppink;margin-bottom:20px">Giỏ hàng của bạn</h2>
                     <ol class="breadcrumb">
                         <li><a href="@Url.Action("Index","Home")" style="font-weight:bold">Trang chủ</a></li>
                         <li><a href="" style="margin-left:10px;margin-right:10px"> - </a></li>
@@ -58,9 +58,9 @@
                                                             <td><a class="remove" href="@Url.Action("Remove", "MyCart", new { id = item.ProductId })"><fa class="fa fa-close" style="color:red;font-size:18px"></fa></a></td>
                                                             <td><a href="#"><img style="height:100px;width:100px" src="@Url.Content(item.Product.Image)" alt=""></a></td>
                                                             <td><a class="aa-cart-title" href="#">@item.Product.Name</a></td>
-                                                            <td id="itemPrice-@(i)">@item.Price.ToString("N0")đ</td>
+                                                            <td id="itemPrice-@(i)">@((int)item.Price) VNĐ</td>
                                                             <td><input id="itemQty-@(i)" name="Qty-@(i)" class="aa-cart-quantity" type="number" maxlength="2" min="1" max="99" value="@(item.Quantity==0 ? "1": item.Quantity.ToString())" /></td>
-                                                            <td><strong id="itemAmount-@(i)">@item.Total.ToString("N0")đ</strong></td>
+                                                            <td><strong id="itemAmount-@(i)">@((int)item.Total)</strong> VNĐ</td>
 
 
                                                         </tr>
@@ -84,10 +84,7 @@
                                                 <th>Tạm tính: </th>
                                                 <td id="subTotal">000</td>
                                             </tr>
-                                            <tr>
-                                                <th>Giảm giá: </th>
-                                                <td id="discount">0 %</td>
-                                            </tr>
+                                    
                                             <tr>
                                                 <th>Tổng tiền: </th>
                                                 <td id="totalAmount">000</td>
@@ -96,7 +93,7 @@
                                         <tfoot>
 
                                             <tr>
-                                                <td colspan="3"><button type="submit" class="aa-cart-view-btn" style="background-color:deeppink;color:white;padding:10px">Thanh toán</button></td>
+                                                <td colspan="3"><button type="submit" class="aa-cart-view-btn" style="background-color:deeppink;color:white;padding:10px;border-radius:10px;margin-top:20px">Thanh toán</button></td>
                                             </tr>
 
                                         </tfoot>
@@ -120,9 +117,8 @@
                     var itemQty = $('#itemQty-' + index + '').val();
                     var amountEle = document.getElementById('itemAmount-' + index + '');
 
-                    var amount = itemQty * parseInt(itemPriceEle.innerText) * 1000;
-
-                    amountEle.innerText = amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                    var amount = itemQty * parseFloat(itemPriceEle.innerText);
+                    amountEle.innerText = amount;
 
                     CartsTotal();
 
@@ -132,11 +128,11 @@
                 CartsTotal();
             });
             function CartsTotal() {
-                var subAmount = 0;
+                var subAmount = 0.0;
                 var i = 0;
                 for (var i = 0; i < 5;) {
-                    if (parseInt($('#itemAmount-' + i + '').text()) > 0) {
-                        subAmount = subAmount + parseInt($('#itemAmount-' + i + '').text());
+                    if (parseFloat($('#itemAmount-' + i + '').text()) > 0) {
+                        subAmount = subAmount + parseFloat($('#itemAmount-' + i + '').text());
                         i++;
                     }
                     else {
@@ -144,7 +140,7 @@
                     }
                 }
                 var subTotalEle = document.getElementById('subTotal');
-                subTotalEle.innerText = (subAmount*1000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                subTotalEle.innerText = subAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 
                 var TotalAmountEle = document.getElementById('totalAmount');
                 TotalAmountEle.innerText = subAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
@@ -155,11 +151,11 @@
                     var itemQty = $('#itemQty-' + i + '').val();
                     var amountEle = document.getElementById('itemAmount-' + i + '');
 
-                    var amount = itemQty * parseInt(itemPriceEle.innerText);
+                    var amount = itemQty * parseFloat(itemPriceEle.innerText);
 
-                    totalAmountVn = amount;
+                    totalAmountVn = amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                 }
-                amountEle.innerText = (totalAmountVn*1000).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                amountEle.innerText = totalAmountVn;
             }
         </script>
     </section>

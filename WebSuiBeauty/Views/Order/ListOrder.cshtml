@@ -1,0 +1,53 @@
+﻿@model WebSuiBeauty.Models.OrderVM
+@{
+    ViewBag.Title = "ListOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    p{
+        margin-bottom:5px !important
+    }
+</style>
+<body style="margin-top:100px">
+    <div class="text-center">
+        <h1 style="color: deeppink;  margin-bottom: 30px">Đơn hàng của bạn</h1>
+    </div>
+    @if (Session["username"] != null)
+    {
+        <div class="container">
+            <div class="row">
+                @foreach (var item in (List<WebSuiBeauty.Data.Order>
+                    )@ViewBag.ListOrder)
+                {
+
+                    <div class="col-md-6">
+                        <div class="container" style="background-color:papayawhip; padding:15px;border-radius:10px;margin-bottom:15px">
+                            <div class="row">
+                                <h5>Đơn hàng: SuiBeauty-@((item.CreatedDate??DateTime.Now).ToString("dd-MM-yyyy"))-@item.Id</h5>
+                                <div class="col-md-6">
+                                    <p style="font-size:14px;font-weight:bold">Khách hàng: @item.CustomerName</p>
+                                    <p style="font-size:14px">Email: @item.CustomerEmail</p>
+                                    <p style="font-size:14px">Địa chỉ: @item.CustomerAddress</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p style="font-size:14px">Ngày đặt hàng: @((item.CreatedDate??DateTime.Now).ToString("dd/MM/yyyy"))</p>
+                                    <p style="color:red;font-size:14px">Trạng thái: @item.PaymentStatus</p>
+                                </div>
+                                <p style="font-size:14px">Phương thức thanh toán: @item.PaymentMethod</p>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center" style="margin-bottom: 30px">
+            <h2 style="color: deeppink; margin-bottom: 50px">Vui lòng đăng nhập để xem đơn hàng của bạn!</h2>
+            <a href="@Url.Action("Login","Account")" class="btn-success" style="padding:15px;color:white;border-radius:15px;">Đăng nhập</a>
+        </div>
+    }
+</body>
+

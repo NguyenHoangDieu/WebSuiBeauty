@@ -41,6 +41,7 @@ namespace WebSuiBeauty.Controllers
                 orderDetails.Quantity = qty;
                 orderDetails.Price = product.PriceAfterPromotion??0;
                 orderDetails.Total = qty * orderDetails.Price;
+                orderDetails.TotalAll += orderDetails.Total;
                 TempDataVM.items.RemoveAll(x => x.ProductId == productId);
 
                 if (TempDataVM.items == null)
@@ -51,7 +52,7 @@ namespace WebSuiBeauty.Controllers
 
             }
 
-            return RedirectToAction("Index", "CheckOut");
+            return RedirectToAction("Index", "Order");
         }
     }
 }

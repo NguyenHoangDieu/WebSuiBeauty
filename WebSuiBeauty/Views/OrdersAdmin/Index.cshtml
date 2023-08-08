@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebSuiBeauty.Data.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .custom-table {
+        border: 1px solid #000;
+    }
+
+    .custom-row {
+        background-color: pink;
+        border: 1px solid #000;
+    }
+
+    .custom-button {
+        width: 80px;
+    }
+</style>
+
+<a class="btn btn-primary custom-button" style="margin-bottom:10px" href="@Url.Action("Create", "OrdersAdmin")">Thêm</a>
+<table class="table table-bordered">
+    <tr class="text-center custom-row">
+        <th>Tên khách hàng</th>
+        <th>Địa chỉ</th>
+        <th>Email</th>
+        <th> Số điện thoại</th>
+        <th>Ghi chú</th>
+        <th>Thanh toán </th>
+        <th>Ngày đặt hàng</th>
+        <th>Trạng thái</th>
+        <th>Thao tác</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerMobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerMessage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentMethod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentStatus)
+        </td>
+        <td class="col-1 text-center">
+            <a class="btn btn-warning custom-button" style="margin-bottom: 10px" href="@Url.Action("Edit", "OrdersAdmin", new { id = item.Id })">Sửa</a>
+            <a class="btn btn-success custom-button" style="margin-bottom: 10px" href="@Url.Action("Details", "OrdersAdmin", new { id = item.Id })">Chi tiết</a>
+            <a class="btn btn-danger custom-button" style="margin-bottom: 10px" href="@Url.Action("Delete", "OrdersAdmin", new { id = item.Id })">Xóa</a>
+        </td>
+    </tr>
+}
+
+</table>

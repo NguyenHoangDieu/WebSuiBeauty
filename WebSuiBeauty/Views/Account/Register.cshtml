@@ -24,7 +24,6 @@
 
                         <div class="login-form-content">
                             <h2>Đăng ký</h2>
-                            @*@using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "msg", OnComplete = "clearAll" }))*@
                             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "register-form" }))
 
                             {
