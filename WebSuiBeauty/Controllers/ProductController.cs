@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebSuiBeauty.Data;
 using WebSuiBeauty.Models;
+using PagedList;
 
 namespace WebSuiBeauty.Controllers
 {
@@ -67,6 +68,34 @@ namespace WebSuiBeauty.Controllers
             return RedirectToAction("ViewDetails/" + productID + "");
 
         }
+
+        public ActionResult Products()
+        {
+            return View();
+        }
+
+        public ActionResult Search(string product, int? page)
+        {
+
+            List<Product> products;
+            if (!string.IsNullOrEmpty(product))
+            {
+                products = db.Products.Where(x => x.Name.Contains(product)).ToList();
+            }
+            else
+            {
+                products = db.Products.ToList();
+            }
+            return View("Products", products.ToPagedList(page ?? 1, 6));
+        }
+
+             public JsonResult GetProducts(string term)
+        {
+            List<string> prodNames = db.Products.Where(x => x.Name.Contains(term)).Select(y => y.Name).ToList();
+            return Json(prodNames, JsonRequestBehavior.AllowGet);
+
+        }
+
 
     }
 }
