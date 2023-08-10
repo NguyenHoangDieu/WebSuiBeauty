@@ -93,7 +93,6 @@ namespace WebSuiBeauty.Controllers
         {
             List<string> prodNames = db.Products.Where(x => x.Name.Contains(term)).Select(y => y.Name).ToList();
             return Json(prodNames, JsonRequestBehavior.AllowGet);
-
         }
 
 

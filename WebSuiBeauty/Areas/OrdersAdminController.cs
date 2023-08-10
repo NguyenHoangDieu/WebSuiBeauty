@@ -18,7 +18,7 @@ namespace WebSuiBeauty.Areas
         // GET: OrdersAdmin
         public ActionResult Index()
         {
-            return View(db.Orders.ToList());
+            return View(db.Orders.OrderByDescending(x => x.Id).ToList());
         }
 
         // GET: OrdersAdmin/Details/5
@@ -28,12 +28,16 @@ namespace WebSuiBeauty.Areas
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
+            Order ord = db.Orders.Find(id);
+            var Ord_details = db.OrderDetails.Where(x => x.OrderId == id).ToList();
+            var tuple = new Tuple<Order, IEnumerable<OrderDetail>>(ord, Ord_details);
+
+            double SumAmount = Convert.ToDouble(Ord_details.Sum(x => x.Total));
+            ViewBag.TotalItems = Ord_details.Sum(x => x.Quantity).ToString("N0");
+            ViewBag.Discount = 0;
+            ViewBag.TAmount = SumAmount.ToString("N0");
+            ViewBag.Amount = SumAmount.ToString("N0");
+            return View(tuple);
         }
 
         // GET: OrdersAdmin/Create
